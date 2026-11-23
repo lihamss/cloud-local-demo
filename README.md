@@ -4,22 +4,36 @@
 
 ## 目标功能（验收标准）
 
-- [ ] `GET /health` 返回 `{"status":"ok"}`
-- [ ] `POST /todos` 创建待办（title 必填）
-- [ ] `GET /todos` 列出全部待办
-- [ ] `PATCH /todos/{id}` 可标记完成
-- [ ] `DELETE /todos/{id}` 删除
-- [ ] 有基础测试（`pytest`）
+- [x] `GET /health` 返回 `{"status":"ok"}`
+- [x] `POST /todos` 创建待办（title 必填）
+- [x] `GET /todos` 列出全部待办
+- [x] `PATCH /todos/{id}` 可标记完成
+- [x] `DELETE /todos/{id}` 删除
+- [x] 有基础测试（`pytest`）
 
 ## 本地 + 云端怎么练
 
 见 [WORKFLOW.md](./WORKFLOW.md)。
 
-## 本地快速启动（实现完成后）
+## 本地快速启动
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+```
+
+常用接口示例：
+
+```bash
+curl -s http://127.0.0.1:8000/health
+curl -s -X POST http://127.0.0.1:8000/todos -H 'content-type: application/json' -d '{"title":"买牛奶"}'
+curl -s http://127.0.0.1:8000/todos
+```
+
+跑测试：
+
+```bash
+pytest -q
 ```
